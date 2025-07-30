@@ -1,0 +1,14 @@
+<div class="container my-4">
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <!-- Post Cards -->
+        <button class="btn btn-primary" [routerLink]="['/createpost']">
+          Create Post
+        </button>
+        <app-posts [myposts]="myposts"></app-posts>
+        <button class="btn btn-primary btn-sm" (click)="ngOnInit()">Show More</button>
+
+    </div>
+  </div>
+</div>

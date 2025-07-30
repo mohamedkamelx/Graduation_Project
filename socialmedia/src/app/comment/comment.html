@@ -1,0 +1,12 @@
+<div class="d-flex mb-3" *ngFor="let comment of mycomments">
+    <img src="{{comment.user.profilepic}}" class="rounded-circle me-3" alt="John Smith" width="40" height="40">
+    <div class="flex-grow-1">
+        <div class="bg-light rounded p-3">
+            <div class="d-flex justify-content-between mb-1">
+                <strong>{{comment.user.name}}</strong>
+                <small class="text-muted">{{comment.time}}</small>
+            </div>
+            <p class="mb-0">{{comment.text}}</p>
+        </div>
+    </div>
+</div>

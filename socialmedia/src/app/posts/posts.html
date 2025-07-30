@@ -1,0 +1,51 @@
+<div *ngFor="let post of myposts" class="card mb-4 shadow-sm">
+  <!-- Post Header -->
+  
+    <div class="card-header d-flex align-items-center justify-content-between bg-white">
+      <div class="d-flex align-items-center">
+        <img [src]="post.user.profilepic || 'https://tse3.mm.bing.net/th/id/OIP.WbQWgy1nAFkyX_NaR2H95gHaFS?rs=1&pid=ImgDetMain&o=7&rm=3'" class="rounded-circle me-2" alt="User Profile" width="40" height="40">
+        <div>
+          <h6 class="mb-0">{{post.user.name}}</h6>
+          <small class="text-muted">{{post.sharetime}}</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post Body -->
+    <div class="card-body">
+      <p class="card-text">{{post.text}}</p>
+      
+      <!-- Centered, Fixed Size Post Image -->
+      <div class="d-flex justify-content-center mb-3">
+        <img *ngIf="post.post_image" [src]="post.post_image"
+            alt="Post Image" 
+            class="rounded" 
+            style="width: 300px; height: 200px; object-fit: cover;">
+      </div>
+
+      <!-- Interaction Bar -->
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-sm btn-light border rounded-circle toggle-like" (click)="addlike(post.id)">
+            <i class="bi" [ngClass]="post.isliked ? 'bi-heart-fill text-red' : 'bi-heart'"></i>
+          </button>
+          <span class="text-muted small">{{post.likecount}} Likes</span>
+
+          <!-- Comment Button -->
+          <a [routerLink]="['/post', post.id]" class="text-decoration-none text-reset">
+          <button class="btn btn-sm btn-light border rounded-circle" >
+            <i class="bi bi-chat-left-text"></i>
+          </button>
+          <span class="text-muted small">{{ post.commentscount }} Comments</span>
+          </a>
+
+          <!-- Share Button -->
+          <button class="btn btn-sm btn-light border rounded-circle" >
+            <i class="bi bi-share"></i>
+          </button>
+          <span class="text-muted small">{{post.sharecount}} Shares</span>
+          
+        </div>
+      </div>
+    </div>
+</div>

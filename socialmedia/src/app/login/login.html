@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h4 class="text-center">Login</h4>
+                </div>
+                <div class="card-body">
+                    <form id="loginForm" [formGroup]="LoginForm" (ngSubmit)="submitLoginForm(LoginForm)">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required formControlName="username"       
+                            [class.is-invalid]="LoginForm.get('username')?.invalid && LoginForm.get('username')?.touched">
+                                  <div class="invalid-feedback" *ngIf="LoginForm.get('username')?.invalid && LoginForm.get('username')?.touched">
+                                <small *ngIf="LoginForm.get('username')?.errors?.['required']">username is required</small>
+                                <small *ngIf="LoginForm.get('username')?.errors?.['minlength']">username must be >6 letters</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required formControlName="password" [class.is-invalid]="LoginForm.get('username')?.invalid && LoginForm.get('username')?.touched">
+                            <div class="invalid-feedback" *ngIf="LoginForm.get('password')?.invalid && LoginForm.get('password')?.touched">
+                                <small *ngIf="LoginForm.get('password')?.errors?.['required']">password is required</small>
+                                <small *ngIf="LoginForm.get('password')?.errors?.['pattern']">password must be letters and numbers and morethan 8 charecters</small>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe" formControlName="remember">
+                            <label class="form-check-label" for="rememberMe">
+                                Remember me
+                            </label>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary" [disabled]="LoginForm.invalid">Login</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a [routerLink]="['/register']" class="text-decoration-none">Dont have an account? Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

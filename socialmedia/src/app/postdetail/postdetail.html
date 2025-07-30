@@ -1,0 +1,31 @@
+<div class="container my-4">
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+
+<app-posts [myposts]="myposts"></app-posts>
+
+
+
+    <div class="card-footer bg-white border-top pt-3">
+        <!-- Add Comment Input -->
+        <div class="d-flex align-items-start mb-3">
+            <img src="{{me.profilepic}}" class="rounded-circle me-3" alt="User" width="40" height="40">
+            <div class="flex-grow-1">
+              <textarea #mycomment
+                class="form-control"
+                rows="2"
+                placeholder="Write a comment..."></textarea>
+                <button class="btn btn-primary btn-sm mt-2" (click)="createcomment(mycomment.value); mycomment.value=''">Post</button>
+            </div>
+        </div>
+
+        <!-- List of Comments -->
+        <app-comment [postid]="myposts[0].id"></app-comment>
+    </div>
+
+
+    </div>
+  </div>
+</div>

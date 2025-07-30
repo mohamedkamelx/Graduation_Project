@@ -1,0 +1,66 @@
+// models/Schema.js - Fixed version
+const mongoose = require('mongoose');
+
+// Define schemas
+const UserSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  profileImg: { type: String, required: false },
+  password: { type: String, required: true }
+});
+
+const FriendshipSchema = new mongoose.Schema({
+  user1: { type: String },
+  user2: { type: String },
+  state: { type: String, default: 'pending' }
+});
+
+const PostSchema = new mongoose.Schema({
+  text: { type: String, required: true },
+  post_image: { type: String },
+  userId: { type: String, required: true },
+  sharetime: { type: Date, default: Date.now }
+});
+
+const LikeSchema = new mongoose.Schema({
+  userId: { type: String, required: true },
+  postId: { type: String, required: true }
+});
+
+const CommentSchema = new mongoose.Schema({
+  userId: { type: String, required: true },
+  postId: { type: String, required: true },
+  text: { type: String },
+  sharetime: { type: Date, default: Date.now }
+});
+
+const ShareSchema = new mongoose.Schema({
+  userId: { type: String, required: true },
+  postId: { type: String, required: true },
+  sharetime: { type: Date, default: Date.now }
+});
+
+const NotificationSchema = new mongoose.Schema({
+  userId: { type: String, required: true },
+  interaction: { type: String }, // Fixed typo: was "entersction"
+  sharetime: { type: Date, default: Date.now }
+});
+
+// Create models from schemas - THIS IS WHAT WAS MISSING
+const User = mongoose.model('User', UserSchema);
+const Friendship = mongoose.model('Friendship', FriendshipSchema);
+const Post = mongoose.model('Post', PostSchema);
+const Like = mongoose.model('Like', LikeSchema);
+const Comment = mongoose.model('Comment', CommentSchema);
+const Share = mongoose.model('Share', ShareSchema);
+const Notification = mongoose.model('Notification', NotificationSchema);
+
+// Export models (not schemas)
+module.exports = {
+  User,
+  Friendship,
+  Post,
+  Like,
+  Comment,
+  Share,
+  Notification
+};
